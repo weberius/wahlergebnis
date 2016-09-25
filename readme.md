@@ -32,6 +32,14 @@ Beispiel: curl -X PUT http://localhost:8080/wahlergebnis/service/put/nrw/koeln/2
 
 # Datenbank
 
+## DB User auf Postgres einrichten
+
+    sudo -u postgres createuser -P wahlergebnis
+    
+## Datenbank wahlergebnis anlegen
+
+    sudo -u postgres createdb -O wahlergebnis wahlergebnis
+
 ## Tabelle
 
 TBD
