@@ -89,9 +89,9 @@ Beim ersten auschecken und mit Aufruf von 'mvn clean install' wird die Datei jnd
 
 # Installation
 
-1. git clone
+1. git clone git@github.com:weberius/wahlergebnis.git
 2. mvn clean install
-3. jetty run
+3. mvn jetty:run
 
 # License
 
