@@ -40,6 +40,10 @@ Beispiel: curl -X PUT http://localhost:8080/wahlergebnis/service/put/nrw/koeln/2
 
     sudo -u postgres createdb -O wahlergebnis wahlergebnis
 
+## Spatial Information in PostGreSQL anlegen
+
+    sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" wahlgebiet
+
 ## Tabelle
 
 TBD
