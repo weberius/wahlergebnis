@@ -1,0 +1,17 @@
+{ "art":1,
+  "artname":"Bundestagswahl",
+  "datum":"2016-11-11",
+  "bundesland":"05",
+  "gemeindeschluessel":"05315000",
+  "stimmbezirke":[{
+    "nr":10101,
+    "wahlberechtigt":1000,
+    "abgegeben":500,
+    "gueltig":450,
+    "ungueltig":50,
+    "ergebnisse":[{
+      "partei":"SPD",
+      "stimmen":123
+     }]
+  }]
+}
