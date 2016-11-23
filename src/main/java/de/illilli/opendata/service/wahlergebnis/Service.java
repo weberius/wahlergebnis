@@ -2,13 +2,16 @@ package de.illilli.opendata.service.wahlergebnis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
@@ -61,30 +64,17 @@ public class Service {
 
 	/**
 	 * <p>
-	 * Dieser Service holt die Daten z.B. von offene Daten Köln und schreibt die
-	 * aktuellen Werte in die Datenbank. Hierfür wird die http-PUT Methode
-	 * verwendet. Der erste oder erneute Aufruf dieser Schnittstelle führt dazu,
-	 * dass bisherige Daten gelöscht und ggf. aktualisierte Daten eingelesen
-	 * werden.
+	 * Dieser Service nimmt eine json - Struktur per POST entgegen. 
 	 * </p>
 	 * 
-	 * <p>
-	 * Das Beispiel zeigt, wie die Wahlergebnisse für die 2012er Landtagswahl
-	 * Nordrheinwestfalen in Köln geladen werden.
-	 * <code>curl -X PUT http://localhost:8080/wahlergebnis/service/put/nrw/koeln/2012</code>
-	 * </p>
-	 * 
-	 * @param year
 	 * @return
 	 */
-	@PUT
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/put/landtagswahl/nrw/koeln/{year}")
-	public String putLandtagswahl(@PathParam("year") int year) {
-		Facade facade = PutWahlFacadeFactory.getFacade("landtagswahl", "nrw", Gemeinde.koeln.key, year);
-		String msg = facade.getJson();
-		logger.info(msg);
-		return msg;
+	@POST
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/data")
+	public Response putData(String data) {
+		String result = "Data post: " + data;
+		return Response.status(201).entity(result).build(); 
 	}
 
 }

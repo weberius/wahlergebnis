@@ -22,6 +22,7 @@ public class PutWahlFacadeFactory {
 	 *            Das Jahr, in der die Wahl durchgeführt wurde.
 	 * @return
 	 */
+	@Deprecated
 	public static Facade getFacade(String wahl, String land, String gemeindeschluessel, int year) {
 		Facade facade = new PutWahlergebnisDefaultFacade();
 		// prüfe auf Art der Wahl; z.B. landtagswahl

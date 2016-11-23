@@ -12,6 +12,18 @@ Der Service befindet sich in der Entwicklung
 
 Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichbar ist.
 
+## /wahlergebnis/service/landtagswahl
+
+Dieser Service liefert alle Landtagswahlergebnisse zurück.
+
+## /wahlergebnis/service/landtagswahl/nrw
+
+Dieser Service liefert alle Landtagswahlergebnisse für NRW zurück.
+
+## /wahlergebnis/service/landtagswahl/nrw/koeln
+
+Dieser Service liefert alle Landtagswahlergebnisse für NRW in Köln zurück.
+
 ## /wahlergebnis/service/landtagswahl/nrw/koeln/2012
 
 Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW für die Stadt Köln ab (Gemeindeschlüssel: 05315000) 
@@ -24,11 +36,10 @@ Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in 
 
 Beispiel: <a href="">/wahlergebnis/landtagswahl/05315000/2012?10101,10102,10103</a>
 
-## /put/landtagswahl/nrw/koeln/2012
+## /load
 
-Die Schnittstelle erlaubt es die Werte in das System einzulesen. Aktuell ist nur das Einlesen der Werte für die Landtagswahl 2012 der Stadt Köln vorgesehen.
-
-Beispiel: curl -X PUT http://localhost:8080/wahlergebnis/service/put/nrw/koeln/2012
+Daten werden in Form eines json übergeben. Hierin finden sich alle Informationen, um sie 
+zuordnen zu können. Beim upload wird eine Integritätsprüfung vorgenommen. Ein Beispiel Datensatz findet sich hier: [data.json](https://raw.githubusercontent.com/weberius/wahlergebnis/master/src/test/resources/data.json)
 
 # Datenbank
 
@@ -40,13 +51,24 @@ Beispiel: curl -X PUT http://localhost:8080/wahlergebnis/service/put/nrw/koeln/2
 
     sudo -u postgres createdb -O wahlergebnis wahlergebnis
 
-## Spatial Information in PostGreSQL anlegen
-
-    sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" wahlgebiet
-
 ## Tabelle
 
-TBD
+### ART
+
+Die Tabelle ART enthält Informationen zur Art der Wahl. Mögliche Werte:
+
+| Wert | Wahl |
+| ---- | ---- |
+| 0 | Europawahl |
+| 1 | Bundestagswahl |
+| 2 | Landtagswahl |
+| 3 | Kommunalwahl |
+
+    CREATE TABLE ART (
+      id      integer, 
+      name    varchar(256),
+      modtime timestamp DEFAULT current_timestamp
+    );
 
 ## Verbindungsparameter
 
