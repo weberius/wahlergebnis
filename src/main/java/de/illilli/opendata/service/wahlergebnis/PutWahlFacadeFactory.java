@@ -1,5 +1,7 @@
 package de.illilli.opendata.service.wahlergebnis;
 
+import com.google.gson.Gson;
+
 import de.illilli.opendata.service.Facade;
 
 /**
@@ -7,28 +9,19 @@ import de.illilli.opendata.service.Facade;
  */
 public class PutWahlFacadeFactory {
 
-	/**
-	 * Zur Zeit wird in der Factory nur auf die Gemeinde geprüft. Die
-	 * Eigenschaften wahl, Bundesland und Jahr sind noch nicht berücksichtigt.
-	 * 
-	 * @param wahl
-	 *            Die Art der Wahl; z.B. 'landtagswahl', 'bundestagswahl',
-	 *            'kommunalwahl'
-	 * @param land
-	 *            Das Bundesland kleingeschrieben und ohne umlaute; z.B. 'nrw'
-	 * @param gemeindeschluessel
-	 *            Es wird nach Gemeindeschluessel abgefragt; z.B. '05315000'
-	 * @param year
-	 *            Das Jahr, in der die Wahl durchgeführt wurde.
-	 * @return
-	 */
-	@Deprecated
-	public static Facade getFacade(String wahl, String land, String gemeindeschluessel, int year) {
+	public static Facade getFacade(String data) {
+
+		Wahldaten wahldaten = new Gson().fromJson(data, Wahldaten.class);
+
+		String wahl = wahldaten.art;
+		String bundesland = wahldaten.bundesland;
+		String gemeindeschluessel = wahldaten.gemeindeschluessel;
+
 		Facade facade = new PutWahlergebnisDefaultFacade();
 		// prüfe auf Art der Wahl; z.B. landtagswahl
 		if (Wahl.landtagswahl.name.equals(wahl)) {
 			// prüfe auf Land; z.B. NRW
-			if (Land.nrw.name.equals(land)) {
+			if (Land.nrw.key.equals(bundesland)) {
 				// prüfe auf Gemeinde; z.B. 05315000
 				if (Gemeinde.koeln.key.equals(gemeindeschluessel)) {
 					facade = new de.illilli.opendata.service.wahlergebnis.landtagswahl.nrw.koeln.PutWahlergebnis2012Facade();

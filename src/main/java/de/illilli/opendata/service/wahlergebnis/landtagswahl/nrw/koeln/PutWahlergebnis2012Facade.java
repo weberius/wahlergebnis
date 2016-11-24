@@ -9,7 +9,7 @@ import de.illilli.opendata.service.Facade;
  */
 public class PutWahlergebnis2012Facade implements Facade {
 
-	private String msg = "not yet implemented";
+	private String msg = "landtagswahl 05 05315000";
 
 	/**
 	 * 

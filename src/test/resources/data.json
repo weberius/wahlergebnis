@@ -1,5 +1,4 @@
-{ "art":1,
-  "artname":"Bundestagswahl",
+{ "art":"landtagswahl",
   "datum":"2016-11-11",
   "bundesland":"05",
   "gemeindeschluessel":"05315000",
