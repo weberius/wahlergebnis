@@ -25,7 +25,7 @@ public class PutWahlFactoryTest {
 	 */
 	@Test
 	public void testForDefaultFacade() throws IOException {
-		InputStream inputStream = JerseyClientPost.class.getResourceAsStream("/data.json");
+		InputStream inputStream = JerseyClientPost.class.getResourceAsStream("/default.data.json");
 		String data = IOUtils.toString(inputStream);
 		Facade facade = PutWahlFacadeFactory.getFacade(data);
 		String expected = Config.getProperty("wahlergebnis.put.default");

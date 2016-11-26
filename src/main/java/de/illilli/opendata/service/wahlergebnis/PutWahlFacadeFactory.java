@@ -1,8 +1,11 @@
 package de.illilli.opendata.service.wahlergebnis;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+
+import com.google.gson.JsonSyntaxException;
 
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.wahlergebnis.model.Data2Wahldaten;
 import de.illilli.opendata.service.wahlergebnis.model.Wahldaten;
 
 /**
@@ -10,9 +13,9 @@ import de.illilli.opendata.service.wahlergebnis.model.Wahldaten;
  */
 public class PutWahlFacadeFactory {
 
-	public static Facade getFacade(String data) {
+	public static Facade getFacade(String data) throws JsonSyntaxException, IOException {
 
-		Wahldaten wahldaten = new Gson().fromJson(data, Wahldaten.class);
+		Wahldaten wahldaten = new Data2Wahldaten(data).getWahldaten();
 
 		String wahl = wahldaten.art;
 		String bundesland = wahldaten.bundesland;

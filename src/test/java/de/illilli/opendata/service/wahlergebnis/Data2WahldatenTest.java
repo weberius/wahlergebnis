@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.google.gson.JsonSyntaxException;
 
+import de.illilli.opendata.service.wahlergebnis.model.Data2Wahldaten;
 import de.illilli.opendata.service.wahlergebnis.model.Wahldaten;
 
 public class Data2WahldatenTest {
