@@ -141,6 +141,10 @@ In der Tabelle STIMMBEZIRK finden sich die Informationen, die zum Stimmbezirk ge
       wahldaten   integer
     );
 
+## DB-Tabellen initial einrichten
+
+    psql -h localhost -U wahlgebiet -d wahlgebiet -a -f src/main/sql/wahlgebiet.init.sql
+
 ## Verbindungsparameter
 
 Die Datenbankverbindungsparameter werden per JNDI zur Verfügung gestellt. Dies bedeutet, dass sie im Container definiert sein müssen. Für den Online-Betrieb mit
