@@ -1,11 +1,12 @@
 package de.illilli.opendata.service.wahlergebnis;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
+
+import com.google.gson.JsonSyntaxException;
 
 import de.illilli.opendata.service.Config;
 import de.illilli.opendata.service.Facade;
@@ -64,17 +67,19 @@ public class Service {
 
 	/**
 	 * <p>
-	 * Dieser Service nimmt eine json - Struktur per POST entgegen. 
+	 * Dieser Service nimmt eine json - Struktur per POST entgegen.
 	 * </p>
 	 * 
 	 * @return
+	 * @throws IOException
+	 * @throws JsonSyntaxException
 	 */
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
 	@Path("/data")
-	public Response putData(String data) {
-		String result = "Data post: " + data;
-		return Response.status(201).entity(result).build(); 
+	public Response putData(String data) throws JsonSyntaxException, IOException {
+		Facade facade = PutWahlFacadeFactory.getFacade(data);
+		return Response.status(201).entity(facade.getJson()).build();
 	}
 
 }
