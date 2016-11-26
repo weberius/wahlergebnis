@@ -3,6 +3,7 @@ package de.illilli.opendata.service.wahlergebnis;
 import com.google.gson.Gson;
 
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.wahlergebnis.model.Wahldaten;
 
 /**
  * Diese Factory bestimmt anhand von Gemeinde-Name und jahr
@@ -15,7 +16,7 @@ public class PutWahlFacadeFactory {
 
 		String wahl = wahldaten.art;
 		String bundesland = wahldaten.bundesland;
-		String gemeindeschluessel = wahldaten.gemeindeschluessel;
+		String gemeindeschluessel = wahldaten.gemeinde;
 
 		Facade facade = new PutWahlergebnisDefaultFacade();
 		// prüfe auf Art der Wahl; z.B. landtagswahl
