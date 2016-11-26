@@ -24,12 +24,12 @@ CREATE TABLE ERGEBNIS (
   modtime timestamp DEFAULT current_timestamp
 );
 
-CREATE TABLE ERGEBNIS (
+CREATE TABLE ERGEBNIS2STIMMBEZIRK (
   ergebnis    integer, 
   stimmbezirk integer
 );
 
-CREATE TABLE ERGEBNIS (
+CREATE TABLE STIMMBEZIRK2WAHLDATEN (
   stimmbezirk integer, 
   wahldaten   integer
 );

@@ -124,7 +124,7 @@ In der Tabelle STIMMBEZIRK finden sich die Informationen, die zum Stimmbezirk ge
 | ergebnis | integer | id des ergebnisses |
 | stimmbezirk | integer | id des stimmbezirks |
 
-    CREATE TABLE ERGEBNIS (
+    CREATE TABLE ERGEBNIS2STIMMBEZIRK (
       ergebnis    integer, 
       stimmbezirk integer
     );
@@ -136,7 +136,7 @@ In der Tabelle STIMMBEZIRK finden sich die Informationen, die zum Stimmbezirk ge
 | stimmbezirk | integer | id des stimmbezirk |
 | wahldaten | integer | id der wahldaten |
 
-    CREATE TABLE ERGEBNIS (
+    CREATE TABLE STIMMBEZIRK2WAHLDATEN (
       stimmbezirk integer, 
       wahldaten   integer
     );
