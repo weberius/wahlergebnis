@@ -53,21 +53,92 @@ zuordnen zu können. Beim upload wird eine Integritätsprüfung vorgenommen. Ein
 
 ## Tabelle
 
-### ART
+### WAHLDATEN
 
-Die Tabelle ART enthält Informationen zur Art der Wahl. Mögliche Werte:
+Die Tabelle WAHLDATEN enthält allgemeinen Informationen zur Wahl. Die Spalte 'ID' enthält einen intern verwendeten Schlüssel. Die Spalten 'BUNDESLAND' und 'GEMEINDE' enthalten die Schlüsselwerte. Da die Informationen mit führenden Nullen vorliegen (z.B. Gemeindeschlüssel Köln: '05315000') sind diese Spalten als varchar defniert. Das Bundesland ergibt sich prinzipiell aus dem Gemeindeschlüssel (z.B. Köln: '05' steht für das Land Nordrhein-Westfalen). Da z.B. Landtagswahlen sich an Bundesländern orientieren, wird dieser Schlüssel explizit gesetzt. Auch hier werden führende Nullen per varchar abgebildet.
 
-| Wert | Wahl |
-| ---- | ---- |
-| 0 | Europawahl |
-| 1 | Bundestagswahl |
-| 2 | Landtagswahl |
-| 3 | Kommunalwahl |
+Vergleiche auch [wikipedia: Amtlicher Gemeindeschlüssel](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel)
 
-    CREATE TABLE ART (
+| Spalte | Typ | Beschreibung |
+| ------ | --- | ------------ |
+| id | integer | interner Schlüssel für Relation |
+| art | varchar(256) | Die Art der Wahl, z.B. 'landtagswahl', 'bundestagswahl' |
+| datum | timestamp | Zeitpunkt der Wahl; typischerweise ein Datum, z.B. 11.11.206 |
+| bundesland | varchar(2) | Schlüsselwert für das Bundesland, z.B. 05 für Nordrhein-Westfalen |
+| gemeinde | varchar(12) | Schlüsselwert für die Gemeinde, z.B. 05315000 für Köln |
+| modtime | timestamp DEFAULT current_timestamp | Zeitpunkt der Erstellung des Datensatzes |
+
+    CREATE TABLE WAHLDATEN (
+      id         integer, 
+      art        varchar(256),
+      datum      timestamp,
+      bundesland varchar(2),
+      gemeinde   varchar(12),
+      modtime    timestamp DEFAULT current_timestamp
+    );
+
+### STIMMBEZIRK
+
+In der Tabelle STIMMBEZIRK finden sich die Informationen, die zum Stimmbezirk gehören. Die Spalte 'ID' enthält einen intern verwendeten Schlüssel. Die Spalte 'NR' enthält den Schlüssel, an dem der Stimmbezirk fachlich identifiziert werden kann. 
+
+| Spalte | Typ | Beschreibung |
+| ------ | --- | ------------ |
+| id | integer | interner Schlüssel für Relation |
+| nr | integer | Schlüssel, dan dem der Stimmbezirk fachlich identifiziert werden kann |
+| wahlberechtigt | integer | Anzahl der Wahlberechtigten im Stimmbezirk |
+| abgegeben | integer | Anzahl der abgegebenden Stimmen |
+| gueltig | integer | Anzahl der gültigen Stimmen |
+| ungueltig | integer | Anzahl der ungültigen Stimmen | 
+| modtime | timestamp DEFAULT current_timestamp | Zeitpunkt der Erstellung des Datensatzes |
+
+    CREATE TABLE STIMMBEZIRK (
+      id             integer, 
+      nr             integer,
+      wahlberechtigt integer,
+      abgegeben      integer,
+      gueltig        integer,
+      ungueltig      integer,
+      modtime        timestamp DEFAULT current_timestamp
+    );
+
+### ERGEBNIS
+
+| Spalte | Typ | Beschreibung |
+| ------ | --- | ------------ |
+| id | integer | interner Schlüssel für Relation |
+| partei | varchar(512) | Name der Partei |
+| stimmen | integer | Anzahl der Stimmen, die die Partei für sich gewinnen konnte |
+| modtime | timestamp DEFAULT current_timestamp | Zeitpunkt der Erstellung des Datensatzes |
+
+    CREATE TABLE ERGEBNIS (
       id      integer, 
-      name    varchar(256),
+      partei  varchar(512),
+      stimmen integer,
       modtime timestamp DEFAULT current_timestamp
+    );
+
+### ERGEBNIS2STIMMBEZIRK
+
+| Spalte | Typ | Beschreibung |
+| ------ | --- | ------------ |
+| ergebnis | integer | id des ergebnisses |
+| stimmbezirk | integer | id des stimmbezirks |
+
+    CREATE TABLE ERGEBNIS (
+      ergebnis    integer, 
+      stimmbezirk integer
+    );
+
+### STIMMBEZIRK2WAHLDATEN
+
+| Spalte | Typ | Beschreibung |
+| ------ | --- | ------------ |
+| stimmbezirk | integer | id des stimmbezirk |
+| wahldaten | integer | id der wahldaten |
+
+    CREATE TABLE ERGEBNIS (
+      stimmbezirk integer, 
+      wahldaten   integer
     );
 
 ## Verbindungsparameter
