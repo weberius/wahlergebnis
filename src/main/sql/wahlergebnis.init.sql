@@ -1,5 +1,5 @@
 CREATE TABLE WAHLDATEN (
-  id         integer, 
+  id         SERIAL, 
   art        varchar(256),
   datum      timestamp,
   bundesland varchar(2),
@@ -8,7 +8,7 @@ CREATE TABLE WAHLDATEN (
 );
 
 CREATE TABLE STIMMBEZIRK (
-  id             integer, 
+  id             SERIAL, 
   nr             integer,
   wahlberechtigt integer,
   abgegeben      integer,
@@ -18,7 +18,7 @@ CREATE TABLE STIMMBEZIRK (
 );
 
 CREATE TABLE ERGEBNIS (
-  id      integer, 
+  id      SERIAL, 
   partei  varchar(512),
   stimmen integer,
   modtime timestamp DEFAULT current_timestamp
