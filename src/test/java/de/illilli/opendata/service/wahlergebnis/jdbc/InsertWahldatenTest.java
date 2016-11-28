@@ -26,9 +26,9 @@ public class InsertWahldatenTest {
 
 	public static void main(String[] args) throws SQLException, NamingException, IOException, ParseException {
 		ConnectionEnvironment.setUpConnectionForJndi();
-		UpdateData update = new InsertWahldaten(getTestDTO());
-		System.out.println(update.getRowsUpdated());
-		update.closeConnection();
+		UpdateData insert = new InsertWahldaten(getTestDTO());
+		System.out.println(insert.getUpdated());
+		insert.closeConnection();
 	}
 
 	static WahldatenDTO getTestDTO() throws ParseException {

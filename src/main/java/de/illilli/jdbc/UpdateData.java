@@ -9,7 +9,7 @@ public interface UpdateData {
 	 * 
 	 * @return number of inserts.
 	 */
-	int getRowsUpdated();
+	int getUpdated();
 
 	/**
 	 * Please don't forget to return the connection.
