@@ -91,7 +91,7 @@ public class Data2WahldatenTest {
 
 		Data2Wahldaten d2w = new Data2Wahldaten(data);
 		Wahldaten wahldaten = d2w.getWahldaten();
-		int expected = 1;
+		int expected = 3;
 		int actual = wahldaten.stimmbezirke.length;
 
 		Assert.assertEquals(expected, actual);
@@ -157,7 +157,7 @@ public class Data2WahldatenTest {
 
 		Data2Wahldaten d2w = new Data2Wahldaten(data);
 		Wahldaten wahldaten = d2w.getWahldaten();
-		int expected = 123;
+		int expected = 100;
 		int actual = wahldaten.stimmbezirke[0].ergebnisse[0].stimmen;
 
 		Assert.assertEquals(expected, actual);

@@ -10,7 +10,45 @@
     "ungueltig":50,
     "ergebnisse":[{
       "partei":"Partei1",
-      "stimmen":123
+      "stimmen":100
+     },{
+      "partei":"Partei2",
+      "stimmen":200
+     },{
+      "partei":"Partei3",
+      "stimmen":150
+     }]
+  },{
+    "nr":10102,
+    "wahlberechtigt":2000,
+    "abgegeben":1000,
+    "gueltig":500,
+    "ungueltig":500,
+    "ergebnisse":[{
+      "partei":"Partei1",
+      "stimmen":150
+     },{
+      "partei":"Partei2",
+      "stimmen":150
+     },{
+      "partei":"Partei3",
+      "stimmen":200
+     }]
+  },{
+    "nr":10103,
+    "wahlberechtigt":3000,
+    "abgegeben":2000,
+    "gueltig":1800,
+    "ungueltig":200,
+    "ergebnisse":[{
+      "partei":"Partei1",
+      "stimmen":1000
+     },{
+      "partei":"Partei1",
+      "stimmen":300
+     },{
+      "partei":"Partei1",
+      "stimmen":500
      }]
   }]
 }
