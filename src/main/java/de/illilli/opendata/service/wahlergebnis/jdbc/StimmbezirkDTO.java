@@ -1,5 +1,7 @@
 package de.illilli.opendata.service.wahlergebnis.jdbc;
 
+import java.sql.Timestamp;
+
 /**
  * <pre>
 CREATE TABLE STIMMBEZIRK (
@@ -15,11 +17,21 @@ CREATE TABLE STIMMBEZIRK (
  */
 public class StimmbezirkDTO {
 
+	private int id;
 	private int nr;
 	private int wahlberechtigt;
 	private int abgegeben;
 	private int gueltig;
 	private int ungueltig;
+	private Timestamp modtime;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getNr() {
 		return nr;
@@ -61,12 +73,28 @@ public class StimmbezirkDTO {
 		this.ungueltig = ungueltig;
 	}
 
+	public Timestamp getModtime() {
+		return modtime;
+	}
+
+	public void setModtime(Timestamp modtime) {
+		this.modtime = modtime;
+	}
+
+	@Override
+	public String toString() {
+		return "StimmbezirkDTO [id=" + id + ", nr=" + nr + ", wahlberechtigt=" + wahlberechtigt + ", abgegeben="
+				+ abgegeben + ", gueltig=" + gueltig + ", ungueltig=" + ungueltig + ", modtime=" + modtime + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + abgegeben;
 		result = prime * result + gueltig;
+		result = prime * result + id;
+		result = prime * result + ((modtime == null) ? 0 : modtime.hashCode());
 		result = prime * result + nr;
 		result = prime * result + ungueltig;
 		result = prime * result + wahlberechtigt;
@@ -86,6 +114,13 @@ public class StimmbezirkDTO {
 			return false;
 		if (gueltig != other.gueltig)
 			return false;
+		if (id != other.id)
+			return false;
+		if (modtime == null) {
+			if (other.modtime != null)
+				return false;
+		} else if (!modtime.equals(other.modtime))
+			return false;
 		if (nr != other.nr)
 			return false;
 		if (ungueltig != other.ungueltig)
@@ -93,12 +128,6 @@ public class StimmbezirkDTO {
 		if (wahlberechtigt != other.wahlberechtigt)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "StimmbezirkDTO [nr=" + nr + ", wahlberechtigt=" + wahlberechtigt + ", abgegeben=" + abgegeben
-				+ ", gueltig=" + gueltig + ", ungueltig=" + ungueltig + "]";
 	}
 
 }

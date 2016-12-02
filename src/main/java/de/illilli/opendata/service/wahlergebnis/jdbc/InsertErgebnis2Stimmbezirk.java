@@ -20,12 +20,12 @@ public class InsertErgebnis2Stimmbezirk implements UpdateData {
 	private Connection conn;
 	private int updated;
 
-	public InsertErgebnis2Stimmbezirk(int wahldatenId, int stimmbezirkId)
+	public InsertErgebnis2Stimmbezirk(int ergebnis, int stimmbezirkId)
 			throws SQLException, NamingException, IOException {
-		this(wahldatenId, stimmbezirkId, ConnectionFactory.getConnection());
+		this(ergebnis, stimmbezirkId, ConnectionFactory.getConnection());
 	}
 
-	public InsertErgebnis2Stimmbezirk(int wahldatenId, int stimmbezirkId, Connection connection)
+	public InsertErgebnis2Stimmbezirk(int ergebnis, int stimmbezirkId, Connection connection)
 			throws IOException, SQLException {
 
 		this.conn = connection;
@@ -33,10 +33,10 @@ public class InsertErgebnis2Stimmbezirk implements UpdateData {
 		String sql = IOUtils.toString(inputStream);
 
 		QueryRunner run = new QueryRunner();
-		Object[] params = new Object[] { wahldatenId, stimmbezirkId };
+		Object[] params = new Object[] { ergebnis, stimmbezirkId };
 		this.updated = run.update(this.conn, sql, params);
 
-		logger.info("insert " + wahldatenId + ";" + stimmbezirkId);
+		logger.info("insert " + ergebnis + ";" + stimmbezirkId);
 
 	}
 

@@ -1,7 +1,10 @@
 package de.illilli.opendata.service.wahlergebnis;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
@@ -73,12 +76,16 @@ public class Service {
 	 * @return
 	 * @throws IOException
 	 * @throws JsonSyntaxException
+	 * @throws NamingException
+	 * @throws SQLException
+	 * @throws ParseException
 	 */
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Path("/data")
-	public Response putData(String data) throws JsonSyntaxException, IOException {
-		Facade facade = PutWahlFacadeFactory.getFacade(data);
+	public Response putData(String data)
+			throws JsonSyntaxException, IOException, ParseException, SQLException, NamingException {
+		Facade facade = new PutWahlergebnisFacade(data);
 		return Response.status(201).entity(facade.getJson()).build();
 	}
 

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
@@ -18,7 +20,7 @@ public class InsertErgebnis implements UpdateData {
 
 	private static final Logger logger = Logger.getLogger(InsertErgebnis.class);
 	private Connection conn;
-	private int updated;
+	private Integer id;
 
 	public InsertErgebnis(ErgebnisDTO dto) throws SQLException, NamingException, IOException {
 		this(dto, ConnectionFactory.getConnection());
@@ -31,14 +33,16 @@ public class InsertErgebnis implements UpdateData {
 
 		QueryRunner run = new QueryRunner();
 		Object[] params = new Object[] { dto.getPartei(), dto.getStimmen() };
-		this.updated = run.update(this.conn, sql, params);
+
+		ResultSetHandler<Integer> rsh = new ScalarHandler<Integer>();
+		this.id = run.insert(this.conn, sql, rsh, params);
 
 		logger.info("insert " + dto.toString());
 	}
 
 	@Override
 	public int getUpdated() {
-		return updated;
+		return this.id;
 	}
 
 	@Override
