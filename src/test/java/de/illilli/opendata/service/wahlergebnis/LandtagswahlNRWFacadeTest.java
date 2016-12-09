@@ -18,7 +18,7 @@ public class LandtagswahlNRWFacadeTest {
 
 	@Test
 	public void testGetJson() throws IOException {
-		Facade facade = new LandtagswahlNRWFacade(Gemeinde.koeln, 2012);
+		Facade facade = new LandtagswahlNRWFacade(Gemeinde.koeln, 2012, 10101);
 		InputStream inputStream = this.getClass().getResourceAsStream("/landtagswahl.nrw.koeln.2012.json");
 		String expected = IOUtils.toString(inputStream);
 		String actual = facade.getJson();

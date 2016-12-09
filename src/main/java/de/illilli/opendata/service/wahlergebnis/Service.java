@@ -51,7 +51,9 @@ public class Service {
 	}
 
 	/**
-	 * 
+	 * Beispiel: <a href=
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012/10101">
+	 * /landtagswahl/05/05315000/{year}/{stimmbezirk}</a>
 	 * 
 	 * @param year
 	 *            Das Jahr der Wahl
@@ -62,9 +64,9 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/landtagswahl/nrw/koeln/{year}/")
-	public String getLandtagswahl(@PathParam("year") int year) {
-		Facade facade = new LandtagswahlNRWFacade(Gemeinde.koeln, year);
+	@Path("/landtagswahl/05/05315000/{year}/{stimmbezirk}")
+	public String getLandtagswahl(@PathParam("year") int year, @PathParam("stimmbezirk") int stimmbezirk) {
+		Facade facade = new LandtagswahlNRWFacade(Gemeinde.koeln, year, stimmbezirk);
 		return facade.getJson();
 	}
 

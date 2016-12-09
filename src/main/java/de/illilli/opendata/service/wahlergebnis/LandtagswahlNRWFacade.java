@@ -11,7 +11,7 @@ public class LandtagswahlNRWFacade implements Facade {
 
 	String json = "not yet implemented";
 
-	public LandtagswahlNRWFacade(Gemeinde gemeinde, int year) {
+	public LandtagswahlNRWFacade(Gemeinde gemeinde, int year, int stimmbezirk) {
 
 	}
 

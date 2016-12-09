@@ -25,7 +25,8 @@ public class PutWahlergebnisFacadeTest {
 
 	public static void main(String[] args) throws IOException, ParseException, SQLException, NamingException {
 		ConnectionEnvironment.setUpConnectionForJndi();
-		String data = IOUtils.toString(PutWahlergebnisFacadeTest.class.getResourceAsStream("/data.json"));
+		String data = IOUtils
+				.toString(PutWahlergebnisFacadeTest.class.getResourceAsStream("/landtagswahl2012erststimmen.json"));
 		Facade facade = new PutWahlergebnisFacade(data);
 		System.out.println(facade.getJson());
 	}
