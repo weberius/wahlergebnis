@@ -52,7 +52,7 @@ public class Service {
 
 	/**
 	 * Beispiel: <a href=
-	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012/10101">
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101">
 	 * /landtagswahl/05/05315000/{year}/{stimmbezirk}</a>
 	 * 
 	 * @param year
@@ -61,12 +61,24 @@ public class Service {
 	 *            Gemeindeschlüssel, zur Zeit nur für Köln (05315000). String,
 	 *            weil mit führender '0'.
 	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws NamingException
+	 * @throws SQLException
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/landtagswahl/05/05315000/{year}/{stimmbezirk}")
-	public String getLandtagswahl(@PathParam("year") int year, @PathParam("stimmbezirk") int stimmbezirk) {
-		Facade facade = new LandtagswahlNRWFacade(Gemeinde.koeln, year, stimmbezirk);
+	@Path("/landtagswahl/{land}/{gemeinde}/{datum}/{nr}")
+	public String getLandtagswahl(@PathParam("land") String land, @PathParam("gemeinde") String gemeinde,
+			@PathParam("datum") String datum, @PathParam("nr") int nr)
+			throws SQLException, NamingException, IOException, ParseException {
+
+		logger.info("/landtagswahl/" + land + "/" + gemeinde + "/" + datum + "/" + nr + " called");
+
+		request.setCharacterEncoding(Config.getProperty("encoding"));
+		response.setCharacterEncoding(Config.getProperty("encoding"));
+
+		Facade facade = WahlFacadeFactory.getFacade(Wahl.landtagswahl, land, gemeinde, datum, nr);
 		return facade.getJson();
 	}
 

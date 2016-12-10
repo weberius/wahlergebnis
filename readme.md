@@ -12,23 +12,11 @@ Der Service befindet sich in der Entwicklung
 
 Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichbar ist.
 
-## /wahlergebnis/service/landtagswahl
-
-Dieser Service liefert alle Landtagswahlergebnisse zurück.
-
-## /wahlergebnis/service/landtagswahl/nrw
-
-Dieser Service liefert alle Landtagswahlergebnisse für NRW zurück.
-
-## /wahlergebnis/service/landtagswahl/nrw/koeln
-
-Dieser Service liefert alle Landtagswahlergebnisse für NRW in Köln zurück.
-
-## /wahlergebnis/service/landtagswahl/nrw/koeln/2012
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{nr}
 
 Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW für die Stadt Köln ab (Gemeindeschlüssel: 05315000) 
 
-Beispiel: <a href="">/wahlergebnis/landtagswahl/05315000/2012</a>
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101</a>
 
 ## /wahlergebnis/service/landtagswahl/nrw/koeln/2012?[<Liste Stimmbezirke>]
 

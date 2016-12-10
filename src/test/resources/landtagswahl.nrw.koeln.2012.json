@@ -1,1 +1,1 @@
-not yet implemented
+{"art":"landtagswahl","bundesland":"05","gemeinde":"05315000","datum":"2012-05-13","stimmbezirke":[{"nr":10101,"wahlberechtigt":1486,"abgegeben":834,"gueltig":824,"ungueltig":10,"ergebnisse":[{"partei":"SPD","stimmen":302},{"partei":"CDU","stimmen":186},{"partei":"FDP","stimmen":51},{"partei":"GRÜNE","stimmen":170},{"partei":"DIE LINKE","stimmen":26},{"partei":"Sonstige","stimmen":89}]}]}
