@@ -18,11 +18,9 @@ Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in 
 
 Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101</a>
 
-## /wahlergebnis/service/landtagswahl/nrw/koeln/2012?[<Liste Stimmbezirke>]
+## /wahlergebnis/service/wahldaten
 
-Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW für die Stadt Köln ab (Gemeindeschlüssel: 05315000). Es werden nur die Ergebnisse für die Stimmbezirke 10101, 10102, 10103 geliefert.
-
-Beispiel: <a href="">/wahlergebnis/landtagswahl/05315000/2012?10101,10102,10103</a>
+Die Schnittstelle ruft alle Einträge für Wahldaten auf.
 
 ## /load
 
@@ -50,7 +48,8 @@ Vergleiche auch [wikipedia: Amtlicher Gemeindeschlüssel](https://de.wikipedia.o
 | Spalte | Typ | Beschreibung |
 | ------ | --- | ------------ |
 | id | integer | interner Schlüssel für Relation |
-| art | varchar(256) | Die Art der Wahl, z.B. 'landtagswahl', 'bundestagswahl' |
+| art | varchar(256) | Die Art der Stimmen, z.B. 'erststimmen', 'zweistimmen' |
+| wahl | varchar(256) | Die Art der Wahl, z.B. 'landtagswahl', 'bundestagswahl' |
 | datum | timestamp | Zeitpunkt der Wahl; typischerweise ein Datum, z.B. 11.11.206 |
 | bundesland | varchar(2) | Schlüsselwert für das Bundesland, z.B. 05 für Nordrhein-Westfalen |
 | gemeinde | varchar(12) | Schlüsselwert für die Gemeinde, z.B. 05315000 für Köln |
@@ -59,6 +58,7 @@ Vergleiche auch [wikipedia: Amtlicher Gemeindeschlüssel](https://de.wikipedia.o
     CREATE TABLE WAHLDATEN (
       id         integer, 
       art        varchar(256),
+      wahl       varchar(256),
       datum      timestamp,
       bundesland varchar(2),
       gemeinde   varchar(12),
