@@ -36,10 +36,33 @@ public class LandtagswahlNRWFacade implements Facade {
 		wahldaten.datum = datum;
 		wahldaten.gemeinde = Gemeinde.koeln.key;
 		// fill stimmbezirk
-		Select<StimmbezirkDTO> selectStimmbezirk = new SelectStimmbezirk(bundesland, gemeinde, datum, nr);
+		Select<StimmbezirkDTO> selectStimmbezirk = new SelectStimmbezirk(Wahl.landtagswahl.name,
+				StimmArt.erststimmen.name, bundesland, gemeinde, datum, nr);
 		StimmbezirkDTO stimmbezirkDTO = selectStimmbezirk.getDbObject();
 
-		Select<ErgebnisDTO> selectErgebnis = new SelectErgebnis(bundesland, gemeinde, datum, nr);
+		Select<ErgebnisDTO> selectErgebnis = new SelectErgebnis(Wahl.landtagswahl.name, StimmArt.erststimmen.name,
+				bundesland, gemeinde, datum, nr);
+		List<ErgebnisDTO> ergebnisDTOList = selectErgebnis.getDbObjectList();
+
+		wahldaten.stimmbezirke = new Stimmbezirk[] { new DTO2Stimmbezirk(stimmbezirkDTO, ergebnisDTOList) };
+
+	}
+
+	public LandtagswahlNRWFacade(String bundesland, String gemeinde, String datum, int nr, String art)
+			throws SQLException, NamingException, IOException, ParseException {
+		// fill wahldaten
+		wahldaten.wahl = Wahl.landtagswahl.name;
+		wahldaten.art = art;
+		wahldaten.bundesland = Land.nrw.key;
+		wahldaten.datum = datum;
+		wahldaten.gemeinde = Gemeinde.koeln.key;
+		// fill stimmbezirk
+		Select<StimmbezirkDTO> selectStimmbezirk = new SelectStimmbezirk(Wahl.landtagswahl.name, art, bundesland,
+				gemeinde, datum, nr);
+		StimmbezirkDTO stimmbezirkDTO = selectStimmbezirk.getDbObject();
+
+		Select<ErgebnisDTO> selectErgebnis = new SelectErgebnis(Wahl.landtagswahl.name, art, bundesland, gemeinde,
+				datum, nr);
 		List<ErgebnisDTO> ergebnisDTOList = selectErgebnis.getDbObjectList();
 
 		wahldaten.stimmbezirke = new Stimmbezirk[] { new DTO2Stimmbezirk(stimmbezirkDTO, ergebnisDTOList) };

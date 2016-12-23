@@ -14,6 +14,7 @@ public class Wahldaten2DTO {
 	private WahldatenDTO dto = new WahldatenDTO();
 
 	public Wahldaten2DTO(Wahldaten wahldaten) throws ParseException {
+		this.dto.setWahl(wahldaten.wahl);
 		this.dto.setArt(wahldaten.art);
 		Date date = new Date(new SimpleDateFormat("dd.MM.yyyy").parse(wahldaten.datum).getTime());
 		this.dto.setDatum(date);

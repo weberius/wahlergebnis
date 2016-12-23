@@ -32,7 +32,8 @@ public class DeleteWahlergebnis implements UpdateData {
 		WahldatenDTO dto = new Wahldaten2DTO(wahldaten).getDTO();
 		InputStream inputStream = this.getClass().getResourceAsStream("/deleteWahlergebnis.sql");
 		String sql = IOUtils.toString(inputStream);
-		Object[] params = new Object[] { dto.getArt(), dto.getDatum(), dto.getBundesland(), dto.getGemeinde() };
+		Object[] params = new Object[] { dto.getWahl(), dto.getArt(), dto.getDatum(), dto.getBundesland(),
+				dto.getGemeinde() };
 		QueryRunner run = new QueryRunner();
 		updated = run.update(conn, sql, params);
 	}

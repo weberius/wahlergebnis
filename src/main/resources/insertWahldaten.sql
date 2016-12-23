@@ -1,4 +1,4 @@
 insert 
-  into WAHLDATEN(art, datum, bundesland, gemeinde)
+  into WAHLDATEN(wahl, art, datum, bundesland, gemeinde)
 VALUES
-  (?, ?, ?, ?)
+  (?, ?, ?, ?, ?)

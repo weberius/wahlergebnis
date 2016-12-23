@@ -6,7 +6,9 @@ from wahldaten
   join ergebnis2stimmbezirk on stimmbezirk.id = ergebnis2stimmbezirk.stimmbezirk
   join ergebnis on ergebnis.id = ergebnis2stimmbezirk.ergebnis
 where 
-  wahldaten.datum = ? and
+  wahldaten.wahl = ? and
+  wahldaten.art = ? and
   wahldaten.bundesland = ? and
   wahldaten.gemeinde = ? and
-  stimmbezirk.nr = ?;
+  wahldaten.datum = ? and
+  stimmbezirk.nr = ?

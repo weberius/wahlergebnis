@@ -7,7 +7,9 @@ from wahldaten
   join ergebnis on ergebnis.id = ergebnis2stimmbezirk.ergebnis
 where 
 --  wahldaten.datum = to_timestamp('2012-05-13', 'YYYY-MM-DD') and
-  wahldaten.datum = ? and
+  wahldaten.wahl = ? and
+  wahldaten.art = ? and
   wahldaten.bundesland = ? and
   wahldaten.gemeinde = ? and
+  wahldaten.datum = ? and
   stimmbezirk.nr = ?;

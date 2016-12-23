@@ -11,6 +11,8 @@ import org.junit.Before;
 
 import de.illilli.jdbc.ConnectionEnvironment;
 import de.illilli.jdbc.Select;
+import de.illilli.opendata.service.wahlergebnis.StimmArt;
+import de.illilli.opendata.service.wahlergebnis.Wahl;
 
 public class SelectStimmbezirkTest {
 
@@ -27,8 +29,10 @@ public class SelectStimmbezirkTest {
 		String datum = "2012-05-13";
 		String bundesland = "05";
 		String gemeinde = "05315000";
+		String wahl = Wahl.landtagswahl.name;
+		String art = StimmArt.erststimmen.name;
 		int nr = 10101;
-		Select<StimmbezirkDTO> select = new SelectStimmbezirk(datum, bundesland, gemeinde, nr);
+		Select<StimmbezirkDTO> select = new SelectStimmbezirk(wahl, art, bundesland, gemeinde, datum, nr);
 		StimmbezirkDTO dto = select.getDbObject();
 		System.out.println(dto.toString());
 	}

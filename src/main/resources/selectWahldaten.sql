@@ -1,4 +1,4 @@
 select 
-  id, art, datum, bundesland, gemeinde, modtime
+  id, wahl, art, datum, bundesland, gemeinde, modtime
 from 
   wahldaten

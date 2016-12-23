@@ -14,24 +14,52 @@ public class WahlFacadeFactory {
 	 * Wahl.landtagswahl, land, gemeinde, date, stimmbezirk
 	 * 
 	 * @param wahl
+	 *            z.B. landtagswahl oder bundestagswahl
 	 * @param land
+	 *            das Bundesland als Schlüssel; z.B. '05' für NRW
 	 * @param gemeinde
+	 *            die Gemeinde als Gemeindekennschlüssel;
 	 * @param date
+	 *            das Datum, an dem gewählt wurde
 	 * @param stimmbezirk
+	 *            der Stimmbezirk in dem gewählt wurde.
+	 * @param art
+	 *            z.B. erststimmen oder zweitstimmen
 	 * @return
 	 * @throws SQLException
 	 * @throws NamingException
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public static Facade getFacade(Wahl wahl, String land, String gemeinde, String datum, int stimmbezirk)
+	public static Facade getFacade(Wahl wahl, String land, String gemeinde, String datum, int stimmbezirk, String art)
 			throws SQLException, NamingException, IOException, ParseException {
 		Facade facade = new DefaultWahlFacade();
+
+		if (!stimmArtExists(art)) {
+			return facade;
+		}
+
 		if (wahl.equals(Wahl.landtagswahl)) {
 			if (Land.nrw.key.equals(land)) {
-				facade = new LandtagswahlNRWFacade(land, gemeinde, datum, stimmbezirk);
+				facade = new LandtagswahlNRWFacade(land, gemeinde, datum, stimmbezirk, art);
 			}
 		}
 		return facade;
+	}
+
+	/**
+	 * Checks wether the requested Stimmart exists or not
+	 * 
+	 * @param art
+	 * @return
+	 */
+	static boolean stimmArtExists(String art) {
+
+		for (StimmArt stimmArt : StimmArt.values()) {
+			if (stimmArt.name.equals(art)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

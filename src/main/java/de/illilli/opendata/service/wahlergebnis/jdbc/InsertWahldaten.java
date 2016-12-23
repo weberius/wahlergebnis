@@ -33,7 +33,8 @@ public class InsertWahldaten implements UpdateData {
 		String sql = IOUtils.toString(inputStream);
 
 		QueryRunner run = new QueryRunner();
-		Object[] params = new Object[] { dto.getArt(), dto.getDatum(), dto.getBundesland(), dto.getGemeinde() };
+		Object[] params = new Object[] { dto.getWahl(), dto.getArt(), dto.getDatum(), dto.getBundesland(),
+				dto.getGemeinde() };
 
 		ResultSetHandler<Integer> rsh = new ScalarHandler<Integer>();
 		id = run.insert(this.conn, sql, rsh, params);

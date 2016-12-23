@@ -16,11 +16,11 @@ public class SelectErgebnis extends Select<ErgebnisDTO> {
 
 	private final static String queryString = "/selectErgebnis.sql";
 
-	public SelectErgebnis(String bundesland, String gemeinde, String datum, int nr)
+	public SelectErgebnis(String wahl, String art, String bundesland, String gemeinde, String datum, int nr)
 			throws SQLException, NamingException, IOException, ParseException {
 		setQueryString(queryString);
 		long time = new SimpleDateFormat("yyyy-MM-dd").parse(datum).getTime();
-		Object[] params = new Object[] { new Timestamp(time), bundesland, gemeinde, nr };
+		Object[] params = new Object[] { wahl, art, bundesland, gemeinde, new Timestamp(time), nr };
 		runSelect(new BeanListHandler<ErgebnisDTO>(ErgebnisDTO.class), params);
 	}
 
