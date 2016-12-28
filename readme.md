@@ -22,6 +22,10 @@ Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagsw
 
 Die Schnittstelle ruft alle Einträge für Wahldaten auf.
 
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/wahldaten">/wahlergebnis/service/wahldaten</a>
+
+Für eine Übersicht über die zur Verfügung stehenden Wahldaten steht eine Oberfläche zur Verfügung: <a href="https://tom.cologne.codefor.de/wahlergebnis">Wahldaten im System</a>
+
 ## /load
 
 Daten werden in Form eines json übergeben. Hierin finden sich alle Informationen, um sie 
