@@ -125,6 +125,47 @@ public class Service {
 
 	/**
 	 * <p>
+	 * Gibt alle Wahldaten in Form einer json-formatierten Liste aus. Kann mit
+	 * ?datatable aufgerufen werden, um ohne weiteres mit einer
+	 * <a href="">datatable</a> benutzen zu können.
+	 * </p>
+	 * <p>
+	 * Beispiele:
+	 * <ul>
+	 * <li><a href="http://localhost:8080/wahlergebnis/service/wahldaten">
+	 * /wahlergebnis/service/wahldaten</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/wahlergebnis/service/wahldaten?datatable">
+	 * /wahlergebnis/service/wahldaten?datatable</a></li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/wahldaten")
+	public String getWahldaten() throws SQLException, NamingException, IOException {
+
+		request.setCharacterEncoding(Config.getProperty("encoding"));
+		response.setCharacterEncoding(Config.getProperty("encoding"));
+
+		boolean isDatatable = request.getParameter("datatable") != null;
+
+		Facade facade = null;
+		if (isDatatable) {
+			facade = new WahldatenDatatableFacade();
+		} else {
+			facade = new WahldatenFacade();
+		}
+		return facade.getJson();
+	}
+
+	/**
+	 * <p>
 	 * Dieser Service nimmt eine json - Struktur per POST entgegen.
 	 * </p>
 	 * 
