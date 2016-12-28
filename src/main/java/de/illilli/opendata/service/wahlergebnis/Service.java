@@ -135,8 +135,8 @@ public class Service {
 	 * <li><a href="http://localhost:8080/wahlergebnis/service/wahldaten">
 	 * /wahlergebnis/service/wahldaten</a></li>
 	 * <li><a href=
-	 * "http://localhost:8080/wahlergebnis/service/wahldaten?datatable">
-	 * /wahlergebnis/service/wahldaten?datatable</a></li>
+	 * "http://localhost:8080/wahlergebnis/service/wahldaten?datatables">
+	 * /wahlergebnis/service/wahldaten?datatables</a></li>
 	 * </ul>
 	 * </p>
 	 * 
@@ -153,11 +153,11 @@ public class Service {
 		request.setCharacterEncoding(Config.getProperty("encoding"));
 		response.setCharacterEncoding(Config.getProperty("encoding"));
 
-		boolean isDatatable = request.getParameter("datatable") != null;
+		boolean isDatatables = request.getParameter("datatables") != null;
 
 		Facade facade = null;
-		if (isDatatable) {
-			facade = new WahldatenDatatableFacade();
+		if (isDatatables) {
+			facade = new WahldatenDatatablesFacade();
 		} else {
 			facade = new WahldatenFacade();
 		}

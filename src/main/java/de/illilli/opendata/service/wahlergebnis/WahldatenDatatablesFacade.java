@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 import javax.naming.NamingException;
 
-public class WahldatenDatatableFacade extends WahldatenFacade {
+public class WahldatenDatatablesFacade extends WahldatenFacade {
 
-	public WahldatenDatatableFacade() throws SQLException, NamingException, IOException {
+	public WahldatenDatatablesFacade() throws SQLException, NamingException, IOException {
 		super();
 	}
 
