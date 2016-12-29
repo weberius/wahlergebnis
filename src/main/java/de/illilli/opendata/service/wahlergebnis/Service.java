@@ -51,48 +51,16 @@ public class Service {
 	}
 
 	/**
-	 * Beispiel: <a href=
-	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101">
-	 * /landtagswahl/05/05315000/{year}/{stimmbezirk}</a>
-	 * 
-	 * @param year
-	 *            Das Jahr der Wahl
-	 * @param gemeinde
-	 *            Gemeindeschlüssel, zur Zeit nur für Köln (05315000). String,
-	 *            weil mit führender '0'.
-	 * @return
-	 * @throws ParseException
-	 * @throws IOException
-	 * @throws NamingException
-	 * @throws SQLException
-	 */
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/landtagswahl/{land}/{gemeinde}/{datum}/{nr}")
-	public String getLandtagswahl(@PathParam("land") String land, @PathParam("gemeinde") String gemeinde,
-			@PathParam("datum") String datum, @PathParam("nr") int nr)
-			throws SQLException, NamingException, IOException, ParseException {
-
-		logger.info("/landtagswahl/" + land + "/" + gemeinde + "/" + datum + "/" + nr + " called");
-
-		request.setCharacterEncoding(Config.getProperty("encoding"));
-		response.setCharacterEncoding(Config.getProperty("encoding"));
-
-		Facade facade = WahlFacadeFactory.getFacade(Wahl.landtagswahl, land, gemeinde, datum, nr, null);
-		return facade.getJson();
-	}
-
-	/**
 	 * 
 	 * <p>
 	 * Beispiel:
 	 * <ul>
 	 * <li><a href=
-	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101/erststimmen">
-	 * /landtagswahl/05/05315000/{year}/{stimmbezirk}/{art}</a></li>
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101">
+	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk}</a></li>
 	 * <li><a href=
-	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101/zweitstimmen">
-	 * /landtagswahl/05/05315000/{year}/{stimmbezirk}/{art}</a></li>
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101">
+	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk}</a></li>
 	 * </ul>
 	 * 
 	 * @param land
@@ -109,17 +77,17 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/landtagswahl/{land}/{gemeinde}/{datum}/{nr}/{art}")
-	public String getLandtagswahlNachArt(@PathParam("land") String land, @PathParam("gemeinde") String gemeinde,
-			@PathParam("datum") String datum, @PathParam("nr") int nr, @PathParam("art") String art)
-			throws SQLException, NamingException, IOException, ParseException {
+	@Path("/{wahl}/{land}/{gemeinde}/{datum}/{art}/{nr}")
+	public String getLandtagswahlNachArt(@PathParam("wahl") String wahl, @PathParam("land") String land,
+			@PathParam("gemeinde") String gemeinde, @PathParam("datum") String datum, @PathParam("art") String art,
+			@PathParam("nr") int nr) throws SQLException, NamingException, IOException, ParseException {
 
-		logger.info("/landtagswahl/" + land + "/" + gemeinde + "/" + datum + "/" + nr + "/" + art + " called");
+		logger.info("/" + wahl + "/" + land + "/" + gemeinde + "/" + datum + "/" + art + "/" + nr + " called");
 
 		request.setCharacterEncoding(Config.getProperty("encoding"));
 		response.setCharacterEncoding(Config.getProperty("encoding"));
 
-		Facade facade = WahlFacadeFactory.getFacade(Wahl.landtagswahl, land, gemeinde, datum, nr, art);
+		Facade facade = WahlFacadeFactory.getFacade(wahl, land, gemeinde, datum, nr, art);
 		return facade.getJson();
 	}
 

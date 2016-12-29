@@ -12,7 +12,7 @@ Der Service befindet sich in der Entwicklung
 
 Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichbar ist.
 
-## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{nr}/{stimmart}
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}/{nr}
 
 Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW für die Stadt Köln ab (Gemeindeschlüssel: 05315000) 
 

@@ -31,7 +31,7 @@ public class WahlFacadeFactory {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public static Facade getFacade(Wahl wahl, String land, String gemeinde, String datum, int stimmbezirk, String art)
+	public static Facade getFacade(String wahl, String land, String gemeinde, String datum, int stimmbezirk, String art)
 			throws SQLException, NamingException, IOException, ParseException {
 		Facade facade = new DefaultWahlFacade();
 
@@ -39,7 +39,7 @@ public class WahlFacadeFactory {
 			return facade;
 		}
 
-		if (wahl.equals(Wahl.landtagswahl)) {
+		if (wahl.equals(Wahl.landtagswahl.name)) {
 			if (Land.nrw.key.equals(land)) {
 				facade = new LandtagswahlNRWFacade(land, gemeinde, datum, stimmbezirk, art);
 			}
