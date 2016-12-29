@@ -56,6 +56,46 @@ public class Service {
 	 * Beispiel:
 	 * <ul>
 	 * <li><a href=
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen">
+	 * /landtagswahl/05/05315000/{year}/{art}</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen">
+	 * /landtagswahl/05/05315000/{year}/{art}</a></li>
+	 * </ul>
+	 * 
+	 * @param wahl
+	 * @param land
+	 * @param gemeinde
+	 * @param datum
+	 * @param art
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/{wahl}/{land}/{gemeinde}/{datum}/{art}")
+	public String getWahlNachArt(@PathParam("wahl") String wahl, @PathParam("land") String land,
+			@PathParam("gemeinde") String gemeinde, @PathParam("datum") String datum, @PathParam("art") String art)
+			throws SQLException, NamingException, IOException, ParseException {
+
+		logger.info("/" + wahl + "/" + land + "/" + gemeinde + "/" + datum + "/" + art + " called");
+
+		request.setCharacterEncoding(Config.getProperty("encoding"));
+		response.setCharacterEncoding(Config.getProperty("encoding"));
+
+		Facade facade = WahlFacadeFactory.getFacade(wahl, land, gemeinde, datum, art);
+		return facade.getJson();
+	}
+
+	/**
+	 * 
+	 * <p>
+	 * Beispiel:
+	 * <ul>
+	 * <li><a href=
 	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101">
 	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk}</a></li>
 	 * <li><a href=
@@ -78,7 +118,7 @@ public class Service {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/{wahl}/{land}/{gemeinde}/{datum}/{art}/{nr}")
-	public String getLandtagswahlNachArt(@PathParam("wahl") String wahl, @PathParam("land") String land,
+	public String getWahlNachArtUndStimmbezirk(@PathParam("wahl") String wahl, @PathParam("land") String land,
 			@PathParam("gemeinde") String gemeinde, @PathParam("datum") String datum, @PathParam("art") String art,
 			@PathParam("nr") int nr) throws SQLException, NamingException, IOException, ParseException {
 

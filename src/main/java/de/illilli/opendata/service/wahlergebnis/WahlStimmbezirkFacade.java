@@ -24,11 +24,11 @@ import de.illilli.opendata.service.wahlergebnis.model.Wahldaten;
  * Landtagswahlergebnisse herauszugeben.
  * 
  */
-public class LandtagswahlNRWFacade implements Facade {
+public class WahlStimmbezirkFacade implements Facade {
 
 	Wahldaten wahldaten = new Wahldaten();
 
-	public LandtagswahlNRWFacade(String bundesland, String gemeinde, String datum, int nr)
+	public WahlStimmbezirkFacade(String bundesland, String gemeinde, String datum, int nr)
 			throws SQLException, NamingException, IOException, ParseException {
 		// fill wahldaten
 		wahldaten.art = Wahl.landtagswahl.name;
@@ -48,21 +48,20 @@ public class LandtagswahlNRWFacade implements Facade {
 
 	}
 
-	public LandtagswahlNRWFacade(String bundesland, String gemeinde, String datum, int nr, String art)
-			throws SQLException, NamingException, IOException, ParseException {
+	public WahlStimmbezirkFacade(String wahl, String bundesland, String gemeinde, String datum, int stimmbezirk,
+			String art) throws SQLException, NamingException, IOException, ParseException {
 		// fill wahldaten
-		wahldaten.wahl = Wahl.landtagswahl.name;
+		wahldaten.wahl = wahl;
 		wahldaten.art = art;
-		wahldaten.bundesland = Land.nrw.key;
+		wahldaten.bundesland = bundesland;
 		wahldaten.datum = datum;
-		wahldaten.gemeinde = Gemeinde.koeln.key;
+		wahldaten.gemeinde = gemeinde;
 		// fill stimmbezirk
-		Select<StimmbezirkDTO> selectStimmbezirk = new SelectStimmbezirk(Wahl.landtagswahl.name, art, bundesland,
-				gemeinde, datum, nr);
+		Select<StimmbezirkDTO> selectStimmbezirk = new SelectStimmbezirk(wahl, art, bundesland, gemeinde, datum,
+				stimmbezirk);
 		StimmbezirkDTO stimmbezirkDTO = selectStimmbezirk.getDbObject();
 
-		Select<ErgebnisDTO> selectErgebnis = new SelectErgebnis(Wahl.landtagswahl.name, art, bundesland, gemeinde,
-				datum, nr);
+		Select<ErgebnisDTO> selectErgebnis = new SelectErgebnis(wahl, art, bundesland, gemeinde, datum, stimmbezirk);
 		List<ErgebnisDTO> ergebnisDTOList = selectErgebnis.getDbObjectList();
 
 		wahldaten.stimmbezirke = new Stimmbezirk[] { new DTO2Stimmbezirk(stimmbezirkDTO, ergebnisDTOList) };

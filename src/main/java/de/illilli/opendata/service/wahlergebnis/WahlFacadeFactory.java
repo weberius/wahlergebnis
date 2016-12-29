@@ -39,9 +39,25 @@ public class WahlFacadeFactory {
 			return facade;
 		}
 
-		if (wahl.equals(Wahl.landtagswahl.name)) {
+		if (Wahl.landtagswahl.name.equals(wahl)) {
 			if (Land.nrw.key.equals(land)) {
-				facade = new LandtagswahlNRWFacade(land, gemeinde, datum, stimmbezirk, art);
+				facade = new WahlStimmbezirkFacade(wahl, land, gemeinde, datum, stimmbezirk, art);
+			}
+		}
+		return facade;
+	}
+
+	public static Facade getFacade(String wahl, String land, String gemeinde, String datum, String art)
+			throws SQLException, NamingException, IOException, ParseException {
+		Facade facade = new DefaultWahlFacade();
+
+		if (!stimmArtExists(art)) {
+			return facade;
+		}
+
+		if (Wahl.landtagswahl.name.equals(wahl)) {
+			if (Land.nrw.key.equals(land)) {
+				facade = new WahlGemeindeFacade(wahl, land, gemeinde, datum, art);
 			}
 		}
 		return facade;
@@ -62,4 +78,5 @@ public class WahlFacadeFactory {
 		}
 		return false;
 	}
+
 }

@@ -12,11 +12,21 @@ Der Service befindet sich in der Entwicklung
 
 Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichbar ist.
 
-## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}/{nr}
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}
 
 Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW für die Stadt Köln ab (Gemeindeschlüssel: 05315000) 
 
-Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101/erststimmen">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/10101/erststimmen</a>
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101</a>
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101</a>
+
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}/{nr}
+
+Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW in Abhängigkeit der Stimmbezirknr für die Stadt Köln ab (Gemeindeschlüssel: 05315000) 
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen</a>
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen</a>
 
 ## /wahlergebnis/service/wahldaten
 
