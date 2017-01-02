@@ -53,21 +53,32 @@ public class Service {
 	/**
 	 * 
 	 * <p>
+	 * Dieser Service stellt Wahlergebnisse auf Gemeindeebene zur Verfügung.
+	 * </p>
+	 * <p>
 	 * Beispiel:
 	 * <ul>
 	 * <li><a href=
 	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen">
-	 * /landtagswahl/05/05315000/{year}/{art}</a></li>
+	 * /landtagswahl/05/05315000/2012-05-13/erststimmen</a></li>
 	 * <li><a href=
 	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen">
-	 * /landtagswahl/05/05315000/{year}/{art}</a></li>
+	 * /landtagswahl/05/05315000/2012-05-13/zweitstimmen</a></li>
 	 * </ul>
 	 * 
 	 * @param wahl
+	 *            Ob es sich um die 'landtagswahl' oder 'bundestagswahl'
+	 *            handelt; Z.Zt. nur 'landtagswahl'
 	 * @param land
+	 *            Das Bundesland mit einheitlichem Schlüssel; Z.Zt. '05' für
+	 *            Nordrhein-Westfalen
 	 * @param gemeinde
+	 *            Die Gemeinde für die die Ergebnisse vorliegen; Z.Zt.
+	 *            '05315000' für Köln
 	 * @param datum
+	 *            Datum im Format 'yyyy-MM-dd'
 	 * @param art
+	 *            Ob 'erststimmen' oder 'zweitstimmen'
 	 * @return
 	 * @throws SQLException
 	 * @throws NamingException
