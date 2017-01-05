@@ -28,6 +28,14 @@ Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagsw
 
 Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101</a>
 
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}/{nr}
+
+Es ist auch möglich mehrere Stimmbezirk Nummern zu übergeben. Damit lassen sich größere Gebiete, wie z.B. Wahlkreise abfragen.
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101,10102,10103">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101,10102,10103</a>
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101,10102,10103">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101,10102,10103</a>
+
 ## /wahlergebnis/service/wahldaten
 
 Die Schnittstelle ruft alle Einträge für Wahldaten auf.

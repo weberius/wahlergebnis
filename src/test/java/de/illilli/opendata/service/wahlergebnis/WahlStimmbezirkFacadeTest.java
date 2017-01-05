@@ -24,16 +24,19 @@ public class WahlStimmbezirkFacadeTest {
 
 		ConnectionEnvironment.setUpConnectionForJndi();
 
-		String datum = "2012-05-13";
+		String wahl = Wahl.landtagswahl.name;
 		String bundesland = Land.nrw.key;
 		String gemeinde = Gemeinde.koeln.key;
-		int nr = 10101;
+		String datum = "2012-05-13";
+		String art = StimmArt.erststimmen.name;
+		String nr = "10101,10102,10103";
 
-		Facade facade = new WahlStimmbezirkFacade(datum, bundesland, gemeinde, nr);
+		Facade facade = new WahlStimmbezirkFacade(wahl, bundesland, gemeinde, datum, art, nr);
 		InputStream inputStream = WahlStimmbezirkFacadeTest.class
 				.getResourceAsStream("/landtagswahl.nrw.koeln.2012.json");
 		String expected = IOUtils.toString(inputStream);
 		String actual = facade.getJson();
+		System.out.println(actual);
 		Assert.assertEquals(expected, actual);
 	}
 

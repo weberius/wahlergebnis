@@ -8,5 +8,4 @@ where
   wahldaten.art = ? and
   wahldaten.bundesland = ? and
   wahldaten.gemeinde = ? and
-  wahldaten.datum = ? and
-  stimmbezirk.nr = ?
+  wahldaten.datum = ?

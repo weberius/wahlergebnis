@@ -110,6 +110,10 @@ public class Service {
 	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101">
 	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk}</a></li>
 	 * <li><a href=
+	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/10101,10102,10103">
+	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk,stimmbezirk,
+	 * stimmbezirk}</a></li>
+	 * <li><a href=
 	 * "http://localhost:8080/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101">
 	 * /landtagswahl/05/05315000/{year}/{art}/{stimmbezirk}</a></li>
 	 * </ul>
@@ -131,14 +135,14 @@ public class Service {
 	@Path("/{wahl}/{land}/{gemeinde}/{datum}/{art}/{nr}")
 	public String getWahlNachArtUndStimmbezirk(@PathParam("wahl") String wahl, @PathParam("land") String land,
 			@PathParam("gemeinde") String gemeinde, @PathParam("datum") String datum, @PathParam("art") String art,
-			@PathParam("nr") int nr) throws SQLException, NamingException, IOException, ParseException {
+			@PathParam("nr") String nr) throws SQLException, NamingException, IOException, ParseException {
 
 		logger.info("/" + wahl + "/" + land + "/" + gemeinde + "/" + datum + "/" + art + "/" + nr + " called");
 
 		request.setCharacterEncoding(Config.getProperty("encoding"));
 		response.setCharacterEncoding(Config.getProperty("encoding"));
 
-		Facade facade = WahlFacadeFactory.getFacade(wahl, land, gemeinde, datum, nr, art);
+		Facade facade = WahlFacadeFactory.getFacade(wahl, land, gemeinde, datum, art, nr);
 		return facade.getJson();
 	}
 
