@@ -1,12 +1,12 @@
-#Wahlergebnis
+# Wahlergebnis
 
 Dieser Ergebnis stellt Wahlergebnisse zur Verfügung
 
-#Status
+# Status
 
 Der Service befindet sich in der Entwicklung
 
-#Service
+# Service
 
 ## /wahlergebnis/service/ping
 
