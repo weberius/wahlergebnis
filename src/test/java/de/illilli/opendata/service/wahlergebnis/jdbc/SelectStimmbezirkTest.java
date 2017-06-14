@@ -1,6 +1,7 @@
 package de.illilli.opendata.service.wahlergebnis.jdbc;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -10,7 +11,9 @@ import org.junit.After;
 import org.junit.Before;
 
 import de.illilli.jdbc.ConnectionEnvironment;
+import de.illilli.jdbc.ConnectionFactory;
 import de.illilli.jdbc.Select;
+import de.illilli.jdbc.SelectDao;
 import de.illilli.opendata.service.wahlergebnis.StimmArt;
 import de.illilli.opendata.service.wahlergebnis.Wahl;
 
@@ -26,6 +29,8 @@ public class SelectStimmbezirkTest {
 
 	public static void main(String[] args) throws SQLException, NamingException, IOException, ParseException {
 		ConnectionEnvironment.setUpConnectionForJndi();
+		Connection conn = ConnectionFactory.getConnection();
+
 		String datum = "2012-05-13";
 		String bundesland = "05";
 		String gemeinde = "05315000";
@@ -33,7 +38,7 @@ public class SelectStimmbezirkTest {
 		String art = StimmArt.erststimmen.name;
 		int nr = 10101;
 		Select<StimmbezirkDTO> select = new SelectStimmbezirk(wahl, art, bundesland, gemeinde, datum, nr);
-		StimmbezirkDTO dto = select.getDbObject();
+		StimmbezirkDTO dto = new SelectDao<StimmbezirkDTO>(select, conn).execute();
 		System.out.println(dto.toString());
 	}
 

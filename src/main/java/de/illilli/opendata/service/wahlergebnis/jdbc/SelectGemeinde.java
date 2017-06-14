@@ -12,7 +12,7 @@ import de.illilli.jdbc.Select;
 
 public class SelectGemeinde implements Select<GemeindeDTO> {
 
-	private final static String sqlFileName = "/selectGemeinde.sql";
+	private final static String sqlFileName = "/sql/selectGemeinde.sql";
 
 	private String wahl;
 	private String art;
