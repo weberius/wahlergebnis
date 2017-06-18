@@ -40,6 +40,7 @@ public class WahlGemeindeFacadeTest {
 				.getResourceAsStream("/landtagswahl.nrw.koeln.2012.erststimmen.json");
 		String expected = IOUtils.toString(inputStream);
 		String actual = facade.getJson();
+		System.out.println(actual);
 		Assert.assertEquals(expected, actual);
 	}
 
