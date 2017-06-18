@@ -41,7 +41,11 @@ public class WahlFacadeFactory {
 
 		if (Wahl.landtagswahl.name.equals(wahl)) {
 			if (Land.nrw.key.equals(land)) {
-				facade = new WahlStimmbezirkFacade(wahl, land, gemeinde, datum, art, stimmbezirk);
+				if ("all".equals(stimmbezirk)) {
+					facade = new WahlStimmbezirkAllFacade(wahl, land, gemeinde, datum, art);
+				} else {
+					facade = new WahlStimmbezirkFacade(wahl, land, gemeinde, datum, art, stimmbezirk);
+				}
 			}
 		}
 		return facade;

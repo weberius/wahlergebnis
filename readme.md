@@ -36,6 +36,14 @@ Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagsw
 
 Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101,10102,10103">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/10101,10102,10103</a>
 
+## /wahlergebnis/service/landtagswahl/{land}/{gemeinde}/{datum}/{stimmart}/all
+
+Die Schnittstelle ruft die Landtagswahlergebnisse für die Landtagswahl 2012 in NRW ab. Es werden alle Stimmbezirke zurückgeliefert.
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/all">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/erststimmen/all</a>
+
+Beispiel: <a href="https://tom.cologne.codefor.de/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/all">/wahlergebnis/service/landtagswahl/05/05315000/2012-05-13/zweitstimmen/all</a>
+
 ## /wahlergebnis/service/wahldaten
 
 Die Schnittstelle ruft alle Einträge für Wahldaten auf.

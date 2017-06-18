@@ -20,4 +20,12 @@ public class DTO2Stimmbezirk extends Stimmbezirk {
 		super.ergebnisse = ergebnisArray;
 	}
 
+	public DTO2Stimmbezirk(StimmbezirkDTO dto) {
+		super.abgegeben = dto.getAbgegeben();
+		super.gueltig = dto.getGueltig();
+		super.nr = dto.getNr();
+		super.ungueltig = dto.getUngueltig();
+		super.wahlberechtigt = dto.getWahlberechtigt();
+	}
+
 }
