@@ -34,7 +34,9 @@ public class SelectStimmbezirk implements Select<StimmbezirkDTO> {
 	@Override
 	public String getSql() throws IOException {
 		InputStream inputStream = SelectErgebnisForGemeinde.class.getResourceAsStream(sqlFileName);
-		return IOUtils.toString(inputStream);
+		StringBuffer sql = new StringBuffer(IOUtils.toString(inputStream));
+		sql.append(" and stimmbezirk.nr = ?");
+		return sql.toString();
 	}
 
 	@Override
