@@ -1,22 +1,31 @@
 package de.illilli.opendata.service.wahlergebnis.jdbc;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.InputStream;
 
-import javax.naming.NamingException;
-
-import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.io.IOUtils;
 
 import de.illilli.jdbc.Select;
 
-public class SelectWahldaten extends Select<WahldatenDTO> {
+public class SelectWahldaten implements Select<WahldatenDTO> {
 
-	private final static String queryString = "/selectWahldaten.sql";
+	private final static String sqlFileName = "/sql/selectWahldaten.sql";
 
-	public SelectWahldaten() throws SQLException, NamingException, IOException {
-		setQueryString(queryString);
+	@Override
+	public String getSql() throws IOException {
+		InputStream inputStream = SelectErgebnisForGemeinde.class.getResourceAsStream(sqlFileName);
+		StringBuffer sql = new StringBuffer(IOUtils.toString(inputStream));
+		return sql.toString();
+	}
+
+	@Override
+	public Object[] getParameter() {
 		Object[] params = new Object[] {};
-		runSelect(new BeanListHandler<WahldatenDTO>(WahldatenDTO.class), params);
+		return params;
+	}
 
+	@Override
+	public Class<WahldatenDTO> getDtoClazz() {
+		return WahldatenDTO.class;
 	}
 }
