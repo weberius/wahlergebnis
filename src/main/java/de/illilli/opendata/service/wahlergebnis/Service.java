@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonSyntaxException;
 
 import de.illilli.opendata.service.Config;
+import de.illilli.opendata.service.DefaultFacade;
 import de.illilli.opendata.service.Facade;
 
 /**
@@ -204,7 +205,14 @@ public class Service {
 	@Path("/data")
 	public Response putData(String data)
 			throws JsonSyntaxException, IOException, ParseException, SQLException, NamingException {
+
 		Facade facade = new PutWahlergebnisFacade(data);
+		if ("localhost".equals(request.getServerName())) {
+			facade = new PutWahlergebnisFacade(data);
+		} else {
+			facade = new DefaultFacade(DefaultFacade.INFO, "Data not loaded; Method only available on localhost");
+		}
+
 		return Response.status(201).entity(facade.getJson()).build();
 	}
 
