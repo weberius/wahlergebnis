@@ -42,6 +42,12 @@ public class Service {
 	/**
 	 * Method for checking the state of the service.
 	 * 
+	 * <p>
+	 * Beispiel:
+	 * <a href="http://localhost:8080/wahlergebnis/service/ping"> /wahlergebnis/
+	 * service/ping</a>
+	 * </p>
+	 * 
 	 * @return
 	 */
 	@GET
